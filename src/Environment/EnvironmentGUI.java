@@ -13,13 +13,17 @@ import java.awt.Toolkit;
  * @author hb_ke
  */
 public class EnvironmentGUI extends javax.swing.JFrame {
+    private Environment environment;
+    private String actionType;
+    
+    public static final String INC_TEMP = "inc_temp";
+    public static final String DEC_TEMP = "dec_temp";
     
     //init and with with environment agent
-    private Environment environment;
-    
     public EnvironmentGUI(Environment environment) {
         super(environment.getLocalName());
         this.environment = environment;
+        this.actionType = INC_TEMP;
         initComponents();
     }
 
@@ -41,11 +45,12 @@ public class EnvironmentGUI extends javax.swing.JFrame {
 
         lblTemp = new javax.swing.JLabel();
         sliderTemp = new javax.swing.JSlider();
+        btnIncTemp = new javax.swing.JButton();
+        btnDecTemp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTemp.setBackground(new java.awt.Color(0, 102, 204));
-        lblTemp.setForeground(new java.awt.Color(0, 0, 255));
+        lblTemp.setBackground(new java.awt.Color(0, 0, 0));
         lblTemp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTemp.setLabelFor(lblTemp);
         lblTemp.setText("Temperature");
@@ -61,6 +66,24 @@ public class EnvironmentGUI extends javax.swing.JFrame {
         sliderTemp.setToolTipText("");
         sliderTemp.setValue(20);
 
+        btnIncTemp.setBackground(new java.awt.Color(255, 51, 51));
+        btnIncTemp.setForeground(new java.awt.Color(255, 255, 255));
+        btnIncTemp.setText("Increase");
+        btnIncTemp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIncTempMouseClicked(evt);
+            }
+        });
+
+        btnDecTemp.setBackground(new java.awt.Color(0, 153, 204));
+        btnDecTemp.setForeground(new java.awt.Color(255, 255, 255));
+        btnDecTemp.setText("Decrease");
+        btnDecTemp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDecTempMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,6 +97,12 @@ public class EnvironmentGUI extends javax.swing.JFrame {
                         .addGap(165, 165, 165)
                         .addComponent(lblTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnDecTemp)
+                .addGap(44, 44, 44)
+                .addComponent(btnIncTemp)
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,13 +111,27 @@ public class EnvironmentGUI extends javax.swing.JFrame {
                 .addComponent(lblTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sliderTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIncTemp)
+                    .addComponent(btnDecTemp))
+                .addContainerGap())
         );
 
         lblTemp.getAccessibleContext().setAccessibleName("lblTemp");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIncTempMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIncTempMouseClicked
+        // TODO add your handling code here:
+        setActionType(INC_TEMP);
+    }//GEN-LAST:event_btnIncTempMouseClicked
+
+    private void btnDecTempMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDecTempMouseClicked
+        // TODO add your handling code here:
+        setActionType(DEC_TEMP);
+    }//GEN-LAST:event_btnDecTempMouseClicked
 
     /**
      * @param args the command line arguments
@@ -125,13 +168,21 @@ public class EnvironmentGUI extends javax.swing.JFrame {
         });
     }
     
-    public void showGui() {
+    public void display() {
         pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int centerX = (int) screenSize.getWidth() / 2;
         int centerY = (int) screenSize.getHeight() / 2;
         setLocation(centerX - getWidth() / 2, centerY - getHeight() / 2);
         super.setVisible(true);
+    }
+    
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
+    
+    public String getActionType() {
+        return actionType;
     }
 
     public int getTemp() {
@@ -151,6 +202,8 @@ public class EnvironmentGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDecTemp;
+    private javax.swing.JButton btnIncTemp;
     private javax.swing.JLabel lblTemp;
     private javax.swing.JSlider sliderTemp;
     // End of variables declaration//GEN-END:variables

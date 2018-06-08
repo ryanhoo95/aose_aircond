@@ -5,11 +5,26 @@
  */
 package Controller;
 
+import Actuator.AirConditioner;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+
 /**
  *
  * @author hb_ke
  */
 public class ControllerGUI extends javax.swing.JFrame {
+    private Controller controller;
+    private String status = AirConditioner.STAND_BY;
+    
+    //init and with with environment agent
+    public ControllerGUI(Controller controller) {
+        super(controller.getLocalName());
+        this.controller = controller;
+        initComponents();
+    }
 
     /**
      * Creates new form ControllerGUI
@@ -27,17 +42,104 @@ public class ControllerGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+        pnlAirCond = new javax.swing.JPanel();
+        lblTemp = new javax.swing.JLabel();
+        pnlWind = new javax.swing.JPanel();
+        pnlLight = new javax.swing.JPanel();
+        lblStatus = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setText("Air Conditioning System");
+
+        pnlAirCond.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        lblTemp.setBackground(new java.awt.Color(153, 153, 255));
+        lblTemp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTemp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTemp.setText("`C");
+        lblTemp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        pnlWind.setBackground(java.awt.Color.gray);
+
+        javax.swing.GroupLayout pnlWindLayout = new javax.swing.GroupLayout(pnlWind);
+        pnlWind.setLayout(pnlWindLayout);
+        pnlWindLayout.setHorizontalGroup(
+            pnlWindLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlWindLayout.setVerticalGroup(
+            pnlWindLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+
+        pnlLight.setBackground(java.awt.Color.yellow);
+
+        javax.swing.GroupLayout pnlLightLayout = new javax.swing.GroupLayout(pnlLight);
+        pnlLight.setLayout(pnlLightLayout);
+        pnlLightLayout.setHorizontalGroup(
+            pnlLightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 51, Short.MAX_VALUE)
+        );
+        pnlLightLayout.setVerticalGroup(
+            pnlLightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 48, Short.MAX_VALUE)
+        );
+
+        lblStatus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblStatus.setText("STAND BY");
+
+        javax.swing.GroupLayout pnlAirCondLayout = new javax.swing.GroupLayout(pnlAirCond);
+        pnlAirCond.setLayout(pnlAirCondLayout);
+        pnlAirCondLayout.setHorizontalGroup(
+            pnlAirCondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlWind, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlAirCondLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(lblTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlLight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+        );
+        pnlAirCondLayout.setVerticalGroup(
+            pnlAirCondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAirCondLayout.createSequentialGroup()
+                .addContainerGap(120, Short.MAX_VALUE)
+                .addGroup(pnlAirCondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStatus)
+                    .addComponent(lblTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlLight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(pnlWind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(lblTitle))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(pnlAirCond, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(pnlAirCond, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,7 +179,49 @@ public class ControllerGUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void display() {
+        pack();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int centerX = (int) screenSize.getWidth() / 2;
+        int centerY = (int) screenSize.getHeight() / 2;
+        setLocation(centerX - getWidth() / 2, centerY - getHeight() / 2);
+        super.setVisible(true);
+    }
+    
+    public void setTemp(int temp) {
+        lblTemp.setText(temp + " `C");
+    }
+    
+    public void setStatus(String status) {
+        lblStatus.setText(status);
+        this.status = status;
+    }
+    
+    public void setLight() {
+        if(status.equals(AirConditioner.STAND_BY)) {
+            pnlLight.setBackground(Color.yellow);
+        }
+        else if(status.equals(AirConditioner.COOL)) {
+            pnlLight.setBackground(Color.cyan);
+        }
+        else if(status.equals(AirConditioner.VERY_COOL)) {
+            pnlLight.setBackground(Color.blue);
+        }
+        else if(status.equals(AirConditioner.WARM)) {
+            pnlLight.setBackground(Color.pink);
+        }
+        else if(status.equals(AirConditioner.VERY_WARM)) {
+            pnlLight.setBackground(Color.red);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblTemp;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlAirCond;
+    private javax.swing.JPanel pnlLight;
+    private javax.swing.JPanel pnlWind;
     // End of variables declaration//GEN-END:variables
 }
