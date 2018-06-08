@@ -71,20 +71,22 @@ public class AirConditioner extends Agent {
                   && msg.getConversationId().equals(Controller.UPDATE_STATUS)) {
                    status = msg.getContent();
                }
+               block();
            } 
         });
         
         //cyclic behaviour to request environment update temp every 1s
-        addBehaviour(new CyclicBehaviour(this) {
-           public void action() {
+        addBehaviour(new TickerBehaviour(this, 1000) {
+           protected void onTick() {
                ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
                msg.setConversationId(UPDATE_TEMP);
                if(environment != null) {
                    msg.addReceiver(environment);
                    send(msg);
+                   //System.out.println("[AirConditioner]: update temp");
                }
                
-               block(1000);
+               //block(1000);
            } 
         });
     }

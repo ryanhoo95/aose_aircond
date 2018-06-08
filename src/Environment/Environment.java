@@ -103,7 +103,7 @@ public class Environment extends Agent{
                        }
                    }
                }
-               block(1000);
+               block();
            } 
         });
     }

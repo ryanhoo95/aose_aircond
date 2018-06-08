@@ -115,7 +115,7 @@ public class Controller extends Agent{
                    controllerGUI.setStatus(status);
                    controllerGUI.setLight();
                }
-               block(2000);
+               block();
            }
         });
         
